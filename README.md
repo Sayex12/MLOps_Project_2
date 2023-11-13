@@ -53,7 +53,16 @@ You can set these environment variables when running the Docker container to cus
 docker run -e WANDB_API_KEY=<your_wandb_api_key> -e LEARNING_RATE=0.001 -e EPOCHS=5 mlops_project_2
 ```
 
-Feel free to customize the environment variables based on your requirements.
+## Pull from Docker Hub
+
+Alternatively, you can pull the Docker image directly from Docker Hub:
+
+```bash
+docker pull shorat/mlops_project_2
+docker run -e WANDB_API_KEY=<your_wandb_api_key> shorat/mlops_project_2
+```
+
+The public Docker image is available at [shorat/mlops_project_2](https://hub.docker.com/r/shorat/mlops_project_2).
 
 ## Dockerfile
 
@@ -62,5 +71,3 @@ The `Dockerfile` is included in the repository and uses the `python:3.9-slim` ba
 ## Main Python Script (main.py)
 
 The `main.py` script is the entry point for running the training job. It reads the configuration from the environment variables and uses the `ModelTrainController` class from `model_train_controller.py` to perform the training run.
-
-Happy training!
