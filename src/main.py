@@ -15,6 +15,7 @@ def main():
     parser.add_argument("-log_step_interval", dest="log_step_interval", type=int, default=50, help="The logging step interval. Default is 50")
     parser.add_argument("-seed", dest="seed", type=int, default=42, help="The random seed for reproducibility. Default is 42")
     parser.add_argument("-model_save_path", dest="model_save_path", default="models/", help="The path to save the trained model. Default is 'models/'")
+    parser.add_argument("-wandb_key", dest="wandb_key", required=True, help="WandB API key")
 
     args = parser.parse_args()
 
@@ -30,7 +31,12 @@ def main():
     seed = args.seed
     model_save_path = args.model_save_path
 
-    wandb.login()
+    print("Parameters:")
+    for arg, value in vars(args).items():
+        if arg != "wandb_key":
+            print(f"{arg}: {value}")
+
+    wandb.login(key=args.wandb_key)
 
     mct = ModelTrainController(project_name=project_name, 
                                model_save_path=model_save_path,
